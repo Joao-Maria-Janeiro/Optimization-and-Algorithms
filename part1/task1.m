@@ -43,7 +43,7 @@ plot(i, u(2,:), '-');
 % c)
 counter = 0;
 for j=2 : T
-    if (norm(u(j) - u(j-1)) > 10^(-6))
+     if norms(u(:,j) - u(:,j-1), 2, 1) > 10^(-6)
         counter = counter + 1;
     end
 end

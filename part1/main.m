@@ -31,6 +31,6 @@ E = [
         0 1 0 0
     ];
 
-task1(A, B, T, p_initial, p_final, w, tau, Umax, E, K, 10^(-1));
-task2(A, B, T, p_initial, p_final, w, tau, Umax, E, K, 10^(-1)); % c) devia dar 11 está a dar 79
-task3(A, B, T, p_initial, p_final, w, tau, Umax, E, K, 10^(-1)); % c) devia dar 11 está a dar 79
+% task1(A, B, T, p_initial, p_final, w, tau, Umax, E, K, 10^(-1));
+% task2(A, B, T, p_initial, p_final, w, tau, Umax, E, K, 10^(-1)); % c) devia dar 11 está a dar 79
+ task3(A, B, T, p_initial, p_final, w, tau, Umax, E, K, 10^(-1)); % c) devia dar 11 está a dar 79
