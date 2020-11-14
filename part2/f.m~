@@ -1,3 +1,0 @@
-function f(X, Y, s, r, k)
-    return log((1 + exp(s' * X - r)) - (Y*(s' * X - r)));
-end
