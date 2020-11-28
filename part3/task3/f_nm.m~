@@ -1,0 +1,4 @@
+function [f] = f_nm(Y, D, E)
+    for i = 1:1:N
+    end
+end

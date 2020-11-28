@@ -1,0 +1,7 @@
+function [f] = f_gradient(Y, D)
+    for m = 1:N
+        for m = n:M
+            2 *  * f_nm(Y, D, n, m);
+        end
+    end
+end

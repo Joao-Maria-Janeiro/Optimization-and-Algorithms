@@ -1,0 +1,10 @@
+function [f] = f(Y, D)
+    N = size(Y,1);
+    f = [];
+    sum = 0;
+    for m = 1:N
+        for n = (m+1):N
+            sum += f_nm();
+        end
+    end
+end
