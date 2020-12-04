@@ -6,10 +6,13 @@ function gradient = f_nm_gradient(ym, yn, n, m, N, k)
     for i=1:N
         for j = 1:k
             if i == m
-                gradient((i*k) - k + j) = (ym(j) - yn(j)) / norm(ym-yn);
+                if m == 1 && n == 2
+                    
+                end
+                gradient(k*(i-1) + i*j) = (ym(j) - yn(j)) / norm(ym-yn);
 
             elseif i == n
-                gradient((i*k) - k + j) = (-1) * (ym(j) - yn(j)) / norm(ym-yn);
+                gradient(k*(i-1) + i*j) = (-1) * (ym(j) - yn(j)) / norm(ym-yn);
             
             end
             
