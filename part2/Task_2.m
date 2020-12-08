@@ -19,6 +19,7 @@ gradients=[];
 
 
 s_r= s_r0;
+g_k = gradient_function(s_r, A ,Y,K);
 alpha = alpha0;
 while (1)
     g_k = gradient_function(s_r, A ,Y,K);
@@ -27,24 +28,34 @@ while (1)
     end
     d = -g_k;
     alpha = alpha0;
-    while minimize_function(s_r+ alpha.*d, A, Y, K) >= minimize_function(s_r, A ,Y,K) + (gama.*g_k'*(alpha.*d))
+    while minimize_function(s_r+ alpha.*d, A, Y, K) >= ...
+        minimize_function(s_r, A ,Y,K) + (gama.*g_k'*(alpha.*d))
         alpha = beta .* alpha;
     end
     s_r= s_r+ (alpha .* d);
     gradients = [gradients norm(g_k)];
 end
 
-figure;
-semilogy(gradients);
-grid on;
 
-figure;
+s = s_r(1:length(s_r)-1)
+r = s_r(length(s_r))
+iterations = length(gradients)
+
+%Plot Graph of The Norm of The Gradient
+figure('NumberTitle', 'off', 'Name', 'Task_2_Norm of The Gradient');
+semilogy(gradients, 'LineWidth',2);
+grid on;
+title('Norm of the Gradient Along the Itetarions.')
+xlabel('k')
+
+%Plot Scatter
+figure('NumberTitle', 'off', 'Name', 'Task_2_Dataset');
 for i=1:K
    if Y(i) == 0
-        a = scatter(X(1, i), X(2, i), [], 'red','LineWidth',1);
+        a = scatter(X(1, i), X(2, i), [], 'red','LineWidth',1.25);
         hold on
     else
-        b = scatter(X(1, i), X(2, i), [], 'blue','LineWidth',1);
+        b = scatter(X(1, i), X(2, i), [], 'blue','LineWidth',1.25);
         hold on
     end
        
@@ -52,9 +63,8 @@ end
 
 x = linspace(-3,7);
 y = s_r(3)/s_r(2) - x*(s_r(1)/s_r(2));
-c = plot(x, y, '--y','Color','g', 'LineWidth', 2);
-%a, b and c so thas_ris_rskips the K scatters and legends the line
+c = plot(x, y, '--y','Color','g', 'LineWidth', 1.5);
 legend([a(1) b(1) c(1)], 'Y = 0', 'Y = 1', 's^Tx = r') 
-title('Datases_r1')
+title('Dataset data1.mat')
 xlabel('x_1');
 ylabel('x_2');

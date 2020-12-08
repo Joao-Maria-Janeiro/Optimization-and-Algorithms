@@ -37,10 +37,12 @@ plot(x_star(1),x_star(2),'x', 'Color', 'k');
 hold on
 
 viscircles(ck,Rk,'Color','b');
-
+text(ck(:,1),ck(:,2),strcat(string(tk)), 'HorizontalAlignment', 'center',...
+'FontName', 'Arial', 'FontSize', 10);   % plots the text inside each circle
 hold on
 
-plot(p0(1) + v(1)*t_star, p0(2) + v(2)*t_star, 's', 'MarkerSize',12, 'Color', 'r');
+plot(p0(1) + v(1)*t_star, p0(2) + v(2)*t_star, 's', 'MarkerSize',12,... 
+'Color', 'r');
 
 hold on
 

@@ -1,4 +1,4 @@
-function task6(tk, ck, Rk, t_star, K)
+function task6(tk, ck, Rk,x_star, t_star, K)
 
 cvx_begin quiet
     variable p0(2, 1)
@@ -67,23 +67,24 @@ axis square
 
 hold on
 
-plot(p0(1) + v(1)*tk, p0(2) + v(2)*tk, 's', 'MarkerSize',12, 'Color', 'r');
+
 
 % hold on
 
-% plot(x_star(1),x_star(2),'x', 'Color', 'k');
+plot(x_star(1),x_star(2),'x', 'Color',  [0 0.5 0],'Linewidth',8);
 
 hold on
 
 viscircles(ck,Rk,'Color','b');
-
+text(ck(:,1),ck(:,2),strcat(string(tk)), 'HorizontalAlignment', ...
+'center','FontName', 'Arial', 'FontSize', 10);% plots the text inside each circle
 hold on
 
 % plot(p0(1) + v(1)*t_star, p0(2) + v(2)*t_star, 's', 'MarkerSize',12, 'Color', 'r');
 
 hold on
 
-rectangle('Position',[a1 b1 a2-a1 b2-b1])
+rectangle('Position',[a1 b1 a2-a1 b2-b1],'EdgeColor',[.5 0 .5],'Linewidth',2)
 
 
 

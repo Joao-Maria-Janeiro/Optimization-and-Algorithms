@@ -26,28 +26,30 @@ cvx_end;
 
 
 % a)
-% plot(x(1,:), x(2,:), '.');
-% grid on;
-% hold on
-% plot(x(1,tau), x(2,tau), 'o');
-% hold on
-% plot(w(:, 1), w(:, 2), 's', 'MarkerSize',17);
-% hold off
+figure()
+plot(x(1,:), x(2,:), '.');
+grid on;
+hold on
+plot(x(1,tau), x(2,tau), 'o');
+hold on
+plot(w(:, 1), w(:, 2), 's', 'MarkerSize',17);
+hold off
 
 % b)
-% i = 1:1:T;
-% plot(i, u(1,:), '-');
-% hold on
-% plot(i, u(2,:), '-');
+figure()
+i = 1:1:T;
+plot(i, u(1,:), '-');
+hold on
+plot(i, u(2,:), '-');
 
 % c)
-% counter = 0;
-% for j=2 : T
-%      if norms(u(:,j) - u(:,j-1), 2, 1) > 10^(-4)
-%         counter = counter + 1;
-%     end
-% end
-% counter
+counter = 0;
+for j=2 : T
+     if norms(u(:,j) - u(:,j-1), 2, 1) > 10^(-4)
+        counter = counter + 1;
+    end
+end
+counter
 
 % d)
 sum(norms(E*x(:,tau) - w', 2, 1)) / K

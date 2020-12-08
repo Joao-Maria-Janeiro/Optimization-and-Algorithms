@@ -1,5 +1,9 @@
-load('data1.mat');
-%Amouns_rof inpus_rfeatures%
+% load('data1.mat');
+% load('data2.mat');
+% load('data3.mat');
+load('data4.mat');
+
+%Amount_of input_features%
 [n,K] = size(X);
 
 %Stopping Criteria%
@@ -14,12 +18,15 @@ A = [X; -ones(K,1)'];
 alpha0 = 1;
 gama = 10^(-4);
 beta = 0.5;
-gradients=[];
+% gradients=[];
 
 
 s_r= s_r0;
 alpha = alpha0;
 alpha_k = [];
+g_k = gradient_function(s_r, A ,Y,K);
+% gradients = [gradients norm(g_k)];
+gradients = [norm(g_k)];
 
 while (1)
     g_k = gradient_function(s_r, A ,Y,K);
@@ -28,40 +35,26 @@ while (1)
     end
     d = -hessian(s_r, A ,K)^(-1)*g_k;
     alpha = alpha0;
-    while minimize_function(s_r+ alpha.*d, A, Y, K) >= minimize_function(s_r, A ,Y,K) + (gama.*g_k'*(alpha.*d))
+    while minimize_function(s_r+ alpha.*d, A, Y, K) >=... 
+        minimize_function(s_r, A ,Y,K) + (gama.*g_k'*(alpha.*d))
         alpha = beta .* alpha;
     end
     alpha_k = [alpha_k alpha];
     s_r= s_r+ (alpha .* d);
     gradients = [gradients norm(g_k)];
+    
 end 
 
-figure;
-semilogy(gradients);
+s = s_r(1:length(s_r)-1)
+r = s_r(length(s_r))
+iterations = length(gradients)
+
+figure('Name', '||\nabla f(s_{k},r_[k})|| (Newton Method)');
+semilogy(gradients,'LineWidth',1.50);
+xlabel('k');
 grid on;
 
-figure;
-for i=1:K
-   if Y(i) == 0
-        a = scatter(X(1, i), X(2, i), [], 'red','LineWidth',1);
-        hold on
-    else
-        b = scatter(X(1, i), X(2, i), [], 'blue','LineWidth',1);
-        hold on
-    end
-       
-end
-
-x = linspace(-3,10);
-y = s_r(3)/s_r(2) - x*(s_r(1)/s_r(2));
-c = plot(x, y, '--y','Color','g', 'LineWidth', 2);
-%a, b and c so thas_ris_rskips the K scatters and legends the line
-legend([a(1) b(1) c(1)], 'Y = 0', 'Y = 1', 's^Tx = r') 
-title('Datases_r1')
-xlabel('x_1');
-ylabel('x_2');
-
 figure('Name','Dataset 1(Newton Method)','NumberTitle','off');
-stem(alpha_k);
+stem(alpha_k,'LineWidth',1.50);
 title('$$\alpha_k$$ (Newton Method)','interpreter','latex')
 xlabel('k');

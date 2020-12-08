@@ -26,6 +26,7 @@ cvx_end;
 
 
 % a)
+figure()
 plot(x(1,:), x(2,:), '.');
 grid on;
 hold on
@@ -35,6 +36,7 @@ plot(w(:, 1), w(:, 2), 's', 'MarkerSize',17);
 hold off
 
 % b)
+figure()
 i = 1:1:T;
 plot(i, u(1,:), '-');
 hold on
